@@ -52,5 +52,6 @@ target "push" {
   tags = [
     "${DOCKERHUB_USERNAME}/${IMAGE}:latest",
     "${DOCKERHUB_USERNAME}/${IMAGE}:${TAG}",
+    "${DOCKERHUB_USERNAME}/${IMAGE}:${TAG}-alpine",
   ]
 }
