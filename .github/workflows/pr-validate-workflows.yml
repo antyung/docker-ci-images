@@ -1,0 +1,54 @@
+---
+name: 'workflows'
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/**
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+env:
+  GH_TOKEN: ${{secrets.GH_TOKEN}}
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: 'checkout'
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 'install'
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint
+
+      - name: 'run'
+        run: |
+          yamllint .github/workflows/
+
+      - name: 'dependabot metadata'
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{env.GH_TOKEN}}
+
+      - name: 'auto-merge for dependabot prs'
+        run: gh pr merge --auto --rebase ${{github.event.pull_request.number}}
+        env:
+          GITHUB_TOKEN: ${{env.GH_TOKEN}}

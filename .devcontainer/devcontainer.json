@@ -1,0 +1,22 @@
+{
+    "name": "docker-images",
+    "dockerComposeFile": [
+      "./docker-compose.yml"
+    ],
+    "service": "devcontainer-docker-images",
+    "remoteUser": "vscode",
+    "shutdownAction": "stopCompose",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "zsh"
+        },
+      "extensions": []
+      }
+    },
+    "workspaceFolder": "/home/vscode/docker-images",
+    "features": {
+        "ghcr.io/antyung/devcontainers/common-utils:1": {},
+        "ghcr.io/antyung/devcontainers/docker-in-docker:1": {}
+    }
+}

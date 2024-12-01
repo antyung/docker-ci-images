@@ -1,0 +1,77 @@
+---
+version: 2
+
+registries:
+  dockerhub-registry:
+    type: docker-registry
+    url: registry.hub.docker.com
+    username: ${{secrets.DOCKERHUB_USERNAME}}
+    password: ${{secrets.DOCKERHUB_PASSWORD}}
+
+  github-registry:
+    type: docker-registry
+    url: https://ghcr.io
+    username: ${{github.actor}}
+    password: ${{secrets.GH_TOKEN}}
+
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+
+  - package-ecosystem: devcontainers
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - github-registry
+
+  - package-ecosystem: docker
+    directory: "/.devcontainer"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - github-registry
+
+  - package-ecosystem: docker
+    directories: 
+      - "/ansible"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - dockerhub-registry
+
+  - package-ecosystem: docker
+    directories: 
+      - "/packer"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - dockerhub-registry
+
+  - package-ecosystem: docker
+    directories: 
+      - "/terragrunt"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - dockerhub-registry
