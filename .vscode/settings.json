@@ -1,6 +1,6 @@
 {
-  "files.trimTrailingWhitespace": true, // Trim trailing whitespace
-  "files.insertFinalNewline": true, // Ensure a newline at the end of file
-  "editor.insertSpaces": true, // Use spaces instead of tabs
-  "editor.tabSize": 2 // Set tab width to 2 spaces
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2
 }
