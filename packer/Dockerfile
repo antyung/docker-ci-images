@@ -11,20 +11,19 @@ RUN case `uname -m` in \
     aarch64) ARCH=arm64; ;; \
     *) echo "un-supported arch, exit ..."; exit 1; ;; \
     esac \
-    && echo "${ARCH}" > "/tmp/ARCH" \
-    && cat "/tmp/ARCH"
+    && echo "${ARCH}" > /tmp/ARCH
 
-RUN apk add --no-cache unzip
+RUN apk add unzip
 
 RUN export ARCH=$(cat /tmp/ARCH) \
     && curl -fsSL "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_${ARCH}.zip" -o "/tmp/packer_${PACKER_VERSION}_linux_${ARCH}.zip" \
-    && unzip "/tmp/packer_${PACKER_VERSION}_linux_${ARCH}.zip" -d "/tmp" \
-    && mv "/tmp/packer" "/usr/local/bin/packer"
+    && unzip "/tmp/packer_${PACKER_VERSION}_linux_${ARCH}.zip" -d /tmp \
+    && mv /tmp/packer /usr/local/bin/packer
 
 FROM base AS final
 
-COPY --from=build "/usr/local/bin/packer" "/usr/local/bin/packer"
+COPY --from=build /usr/local/bin/packer /usr/local/bin/packer
 
-RUN chmod +x "/usr/local/bin/packer"
+RUN chmod +x /usr/local/bin/packer
 
 USER root

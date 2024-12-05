@@ -1,0 +1,54 @@
+---
+name: 'pr-build aws-cdk'
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'aws-cdk/**'
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+env:
+  IMAGE: aws-cdk
+  GH_TOKEN: ${{secrets.GH_TOKEN}}
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{github.actor == 'dependabot[bot]'}}
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: 'set up qemu'
+        uses: docker/setup-qemu-action@v3
+
+      - name: 'set up docker buildx'
+        uses: docker/setup-buildx-action@v3
+
+      - name: 'test'
+        uses: docker/bake-action@v5
+        with:
+          targets: test
+          workdir: ./${{env.IMAGE}}
+
+      - name: 'dependabot metadata'
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{env.GH_TOKEN}}
+
+      - name: 'auto-merge for dependabot prs'
+        run: gh pr merge --auto --rebase ${{github.event.pull_request.number}}
+        env:
+          GITHUB_TOKEN: ${{env.GH_TOKEN}}

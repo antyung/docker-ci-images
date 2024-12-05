@@ -44,7 +44,7 @@ updates:
       - github-registry
 
   - package-ecosystem: docker
-    directories: 
+    directories:
       - "/ansible"
     schedule:
       interval: daily
@@ -55,7 +55,18 @@ updates:
       - dockerhub-registry
 
   - package-ecosystem: docker
-    directories: 
+    directories:
+      - "/aws-cdk"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    registries:
+      - dockerhub-registry
+
+  - package-ecosystem: docker
+    directories:
       - "/packer"
     schedule:
       interval: daily
@@ -66,7 +77,7 @@ updates:
       - dockerhub-registry
 
   - package-ecosystem: docker
-    directories: 
+    directories:
       - "/terragrunt"
     schedule:
       interval: daily
