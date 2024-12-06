@@ -17,7 +17,7 @@ ARG AWSCDK_VERSION=2.171.1
 
 RUN pnpm install -g aws-cdk@${AWSCDK_VERSION}
 
-FROM docker.io/antyung/python:3.13.0-alpine AS python-build
+FROM docker.io/antyung/python:3.13.1-alpine AS python-build
 
 RUN source "${POETRY_HOME}/venv/bin/activate" \
     && poetry init --no-interaction --name aws-sam-cli-ci \
