@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM docker.io/antyung/alpine-ci:3.20 AS base
+FROM docker.io/antyung/alpine-ci:3.21 AS base
 
 ENV PNPM_HOME="/opt/pnpm" \
     POETRY_NO_INTERACTION=1 \
