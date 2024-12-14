@@ -53,7 +53,7 @@ updates:
 
   - package-ecosystem: docker
     directories:
-      - "/cdk"
+      - "/aws-cdk"
     schedule:
       interval: daily
     commit-message:
