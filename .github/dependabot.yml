@@ -2,6 +2,12 @@
 version: 2
 
 registries:
+  dockerhub-registry:
+    type: docker-registry
+    url: registry.hub.docker.com
+    username: ${{secrets.DOCKERHUB_USERNAME}}
+    password: ${{secrets.DOCKERHUB_PASSWORD}}
+
   github-registry:
     type: docker-registry
     url: https://ghcr.io
@@ -49,7 +55,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["aws-ecr-public-registry"]
+    registries: ["dockerhub-registry","aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -59,7 +65,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["aws-ecr-public-registry"]
+    registries: ["dockerhub-registry","aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -69,7 +75,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["aws-ecr-public-registry"]
+    registries: ["dockerhub-registry","aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -79,4 +85,4 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["aws-ecr-public-registry"]
+    registries: ["dockerhub-registry","aws-ecr-public-registry"]

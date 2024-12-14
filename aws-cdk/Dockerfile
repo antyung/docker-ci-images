@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM docker.io/antyung/alpine-ci:3.21 AS base
+FROM public.ecr.aws/w2u0w5i6/base/alpine-ci:3.21 AS base
 
 ENV PNPM_HOME="/opt/pnpm" \
     POETRY_NO_INTERACTION=1 \
@@ -11,13 +11,13 @@ ENV PNPM_HOME="/opt/pnpm" \
 
 ENV PATH="${PNPM_HOME}:${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 
-FROM docker.io/antyung/node:22.12.0-alpine AS node-build
+FROM public.ecr.aws/w2u0w5i6/base/node:22.12.0-alpine AS node-build
 
 ARG AWSCDK_VERSION=2.171.1
 
 RUN pnpm install -g aws-cdk@${AWSCDK_VERSION}
 
-FROM docker.io/antyung/python:3.13.1-alpine AS python-build
+FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS python-build
 
 RUN source "${POETRY_HOME}/venv/bin/activate" \
     && poetry init --no-interaction --name aws-sam-cli-ci \

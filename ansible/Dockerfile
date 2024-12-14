@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM docker.io/antyung/python:3.13.1-alpine AS base
+FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS base
 
 RUN apk add --no-cache \
     sudo bash git aws-cli curl ca-certificates jq make openssh sshpass libc6-compat \

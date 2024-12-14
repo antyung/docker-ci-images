@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM docker.io/antyung/alpine-ci:3.21 AS base
+FROM public.ecr.aws/w2u0w5i6/base/alpine-ci:3.21 AS base
 
 FROM base AS build
 
