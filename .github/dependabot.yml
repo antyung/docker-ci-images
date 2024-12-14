@@ -2,17 +2,17 @@
 version: 2
 
 registries:
-  dockerhub-registry:
-    type: docker-registry
-    url: registry.hub.docker.com
-    username: ${{secrets.DOCKERHUB_USERNAME}}
-    password: ${{secrets.DOCKERHUB_PASSWORD}}
-
   github-registry:
     type: docker-registry
     url: https://ghcr.io
     username: ${{github.actor}}
     password: ${{secrets.GH_TOKEN}}
+
+  aws-ecr-public-registry:
+    type: docker-registry
+    url: https://public.ecr.aws
+    username: ${{secrets.AWS_ACCESS_KEY_ID}}
+    password: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
 updates:
   - package-ecosystem: github-actions
@@ -30,8 +30,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - github-registry
+    registries: ["github-registry","aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directory: "/.devcontainer"
@@ -40,8 +39,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - github-registry
+    registries: ["github-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -51,8 +49,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - dockerhub-registry
+    registries: ["aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -62,8 +59,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - dockerhub-registry
+    registries: ["aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -73,8 +69,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - dockerhub-registry
+    registries: ["aws-ecr-public-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -84,5 +79,4 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries:
-      - dockerhub-registry
+    registries: ["aws-ecr-public-registry"]

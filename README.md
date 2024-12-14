@@ -6,4 +6,4 @@ This repository contains Dockerfiles for building Docker images.
 
 The repository is configured to automatically update and rebuild Docker images using Dependabot. Dependabot monitors each Dockerfile and creates pull requests to update them when new versions are available.
 
-[https://hub.docker.com/u/antyung](https://hub.docker.com/u/antyung)
+[https://gallery.ecr.aws/w2u0w5i6](https://gallery.ecr.aws/w2u0w5i6)
