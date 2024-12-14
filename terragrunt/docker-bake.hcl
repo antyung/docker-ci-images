@@ -53,5 +53,8 @@ target "push" {
     "${DOCKERHUB_USERNAME}/${IMAGE}:latest",
     "${DOCKERHUB_USERNAME}/${IMAGE}:${TAG}",
     "${DOCKERHUB_USERNAME}/${IMAGE}:${TAG}-alpine",
+    "public.ecr.aws/w2u0w5i6/ci/${IMAGE}:latest",
+    "public.ecr.aws/w2u0w5i6/ci/${IMAGE}:${TAG}",
+    "public.ecr.aws/w2u0w5i6/ci/${IMAGE}:${TAG}-alpine",
   ]
 }

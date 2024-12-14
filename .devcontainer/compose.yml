@@ -4,7 +4,6 @@ services:
     container_name: devcontainer-docker-images
     build:
       context: .
-      dockerfile: ./Dockerfile
     volumes:
       - ..:/home/vscode/docker-images:cached
     user: vscode
