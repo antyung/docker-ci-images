@@ -10,9 +10,15 @@ registries:
 
   github-registry:
     type: docker-registry
-    url: https://ghcr.io
+    url: ghcr.io
     username: ${{github.actor}}
     password: ${{secrets.GH_TOKEN}}
+
+  ecr-private-registry:
+    type: docker-registry
+    url: ${{secrets.AWS_ECR_PRIVATE_URI}}
+    username: ${{secrets.AWS_ACCESS_KEY_ID}}
+    password: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
 updates:
   - package-ecosystem: github-actions
@@ -30,7 +36,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["github-registry"]
+    registries: ["github-registry","ecr-private-registry"]
 
   - package-ecosystem: docker
     directory: "/.devcontainer"
@@ -49,17 +55,17 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["dockerhub-registry"]
+    registries: ["dockerhub-registry","ecr-private-registry"]
 
   - package-ecosystem: docker
     directories:
-      - "/aws-cdk"
+      - "/cdk"
     schedule:
       interval: daily
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["dockerhub-registry"]
+    registries: ["dockerhub-registry","ecr-private-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -69,7 +75,7 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["dockerhub-registry"]
+    registries: ["dockerhub-registry","ecr-private-registry"]
 
   - package-ecosystem: docker
     directories:
@@ -79,4 +85,4 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["dockerhub-registry"]
+    registries: ["dockerhub-registry","ecr-private-registry"]
