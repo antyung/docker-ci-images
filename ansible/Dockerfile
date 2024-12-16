@@ -27,7 +27,7 @@ RUN case `uname -m` in \
     esac \
     && echo "${ARCH}" > /tmp/ARCH
 
-RUN apk add --no-cache curl dpkg \
+RUN apk add dpkg \
     && curl -fsSL https://install.python-poetry.org | python3 -
 
 COPY pyproject.toml .
