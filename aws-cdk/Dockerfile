@@ -11,7 +11,7 @@ ENV PNPM_HOME="/opt/pnpm" \
 
 ENV PATH="${PNPM_HOME}:${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 
-FROM public.ecr.aws/w2u0w5i6/base/node:22.12.0-alpine AS node-build
+FROM public.ecr.aws/w2u0w5i6/base/node:23.4.0-alpine AS node-build
 
 ARG AWSCDK_VERSION=2.171.1
 
