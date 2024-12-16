@@ -51,6 +51,15 @@ updates:
       include: "scope"
     registries: ["dockerhub-registry"]
 
+  - package-ecosystem: poetry
+    directories:
+      - "/ansible"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
   - package-ecosystem: docker
     directories:
       - "/aws-cdk"
@@ -60,6 +69,15 @@ updates:
       prefix: "chore"
       include: "scope"
     registries: ["dockerhub-registry"]
+
+  - package-ecosystem: poetry
+    directories:
+      - "/aws-cdk"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: docker
     directories:
