@@ -1,10 +1,10 @@
 ---
 services:
-  devcontainer-docker-images:
-    container_name: devcontainer-docker-images
+  devcontainer-ci-images:
+    container_name: devcontainer-ci-images
     build:
       context: .
     volumes:
-      - ..:/home/vscode/docker-images:cached
+      - ..:/home/vscode/ci-images:cached
     user: vscode
     tty: true

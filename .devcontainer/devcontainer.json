@@ -1,10 +1,10 @@
 {
-  "name": "docker-images",
+  "name": "ci-images",
   "dockerComposeFile": ["./compose.yml"],
-  "service": "devcontainer-docker-images",
+  "service": "devcontainer-ci-images",
   "remoteUser": "vscode",
   "shutdownAction": "stopCompose",
-  "workspaceFolder": "/home/vscode/docker-images",
+  "workspaceFolder": "/home/vscode/ci-images",
   "features": {
       "ghcr.io/antyung/devcontainers/common-utils:1": {},
       "ghcr.io/antyung/devcontainers/docker-in-docker:1": {}
