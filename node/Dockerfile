@@ -1,0 +1,11 @@
+# syntax=docker/dockerfile:1
+
+FROM public.ecr.aws/w2u0w5i6/base/node:23.4.0-alpine AS base
+
+RUN apk add --no-cache \
+    sudo bash git aws-cli curl ca-certificates jq \
+    && rm -rf /var/cache/apk/* \
+    && mkdir -p /var/cache/apk \
+    && ln -s /var/cache/apk /etc/apk/cache
+
+USER root

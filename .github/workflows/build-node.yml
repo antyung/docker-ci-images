@@ -1,0 +1,60 @@
+---
+name: 'build node'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'node/**'
+  workflow_dispatch:
+
+env:
+  IMAGE: node
+  AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+  AWS_ROLE_ARN: ${{secrets.AWS_ROLE_ARN}}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: 'setup qemu'
+        uses: docker/setup-qemu-action@v3
+
+      - name: 'setup docker buildx'
+        uses: docker/setup-buildx-action@v3
+
+      - name: 'configure aws credentials'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{env.AWS_ROLE_ARN}}
+          role-session-name: aws-oidc-${{github.repository.name}}-${{github.run_id}}
+          aws-region: ${{env.AWS_DEFAULT_REGION}}
+
+      - name: 'login to amazon ecr public'
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
+      - name: 'extract version from dockerfile'
+        id: extract_version
+        run: |
+          TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
+          echo "TAG=${TAG#v}" >> $GITHUB_ENV
+          echo "TAG=${TAG#v}"
+
+      - name: 'push'
+        uses: docker/bake-action@v5
+        with:
+          targets: push
+          workdir: ./${{env.IMAGE}}
