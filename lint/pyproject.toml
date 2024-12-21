@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lint-ci"
-version = "1.0.0"
+version = "1.1.0"
 description = ""
 authors = []
 license = ""
@@ -8,6 +8,7 @@ license = ""
 [tool.poetry.dependencies]
 python = "^3.13"
 yamllint = "1.35.1"
+shellcheck-py = "0.10.0.1"
 
 
 [build-system]
