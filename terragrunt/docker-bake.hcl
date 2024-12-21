@@ -34,13 +34,13 @@ target "test" {
     "linux/amd64",
     "linux/arm64",
   ]
-  DOCKER_TAGs = []
+  tags = []
 }
 
 target "build" {
   inherits = ["settings"]
   output   = ["type=docker"]
-  DOCKER_TAGs = [
+  tags = [
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:latest",
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}",
   ]
@@ -53,7 +53,7 @@ target "push" {
     "linux/amd64",
     "linux/arm64",
   ]
-  DOCKER_TAGs = [
+  tags = [
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:latest",
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}",
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}-alpine",
