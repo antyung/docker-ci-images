@@ -49,9 +49,9 @@ jobs:
       - name: 'extract version from dockerfile'
         id: extract_version
         run: |
-          TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
-          echo "TAG=${TAG#v}" >> $GITHUB_ENV
-          echo "TAG=${TAG#v}"
+          DOCKER_TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
+          echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
+          echo "DOCKER_TAG=${DOCKER_TAG#v}"
 
       - name: 'push'
         uses: docker/bake-action@v5

@@ -10,7 +10,7 @@ variable "IMAGE" {
   default = "packer"
 }
 
-variable "TAG" {
+variable "DOCKER_TAG" {
   default = "latest"
 }
 
@@ -34,15 +34,15 @@ target "test" {
     "linux/amd64",
     "linux/arm64",
   ]
-  tags = []
+  DOCKER_TAGs = []
 }
 
 target "build" {
   inherits = ["settings"]
   output   = ["type=docker"]
-  tags = [
+  DOCKER_TAGs = [
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:latest",
-    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${TAG}",
+    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}",
   ]
 }
 
@@ -53,9 +53,9 @@ target "push" {
     "linux/amd64",
     "linux/arm64",
   ]
-  tags = [
+  DOCKER_TAGs = [
     "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:latest",
-    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${TAG}",
-    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${TAG}-alpine",
+    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}",
+    "${AWS_ECR_PUBLIC_URI}/${GROUP}/${IMAGE}:${DOCKER_TAG}-alpine",
   ]
 }
