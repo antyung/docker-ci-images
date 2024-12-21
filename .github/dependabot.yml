@@ -45,6 +45,7 @@ updates:
     directories:
       - "/ansible"
       - "/aws-cdk"
+      - "/lint"
       - "/node"
       - "/packer"
       - "/terragrunt"
