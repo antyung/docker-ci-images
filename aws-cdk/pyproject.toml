@@ -7,7 +7,7 @@ license = ""
 
 [tool.poetry.dependencies]
 python = "^3.13"
-boto3 = "1.35.88"
+boto3 = "1.35.90"
 aws-sam-cli = "1.132.0"
 
 
