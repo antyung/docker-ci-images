@@ -5,7 +5,7 @@ FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS base
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
-    POETRY_CACHE_DIR="/opt/poetry/.cache" \
+    POETRY_CACHE_DIR="${HOME}/.cache/pypoetry" \
     POETRY_HOME="/opt/poetry"
 
 ENV PATH="${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"

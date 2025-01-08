@@ -6,7 +6,7 @@ ENV PNPM_HOME="/opt/pnpm" \
     POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
-    POETRY_CACHE_DIR="/opt/poetry/.cache" \
+    POETRY_CACHE_DIR="${HOME}/.cache/pypoetry" \
     POETRY_HOME="/opt/poetry"
 
 ENV PATH="${PNPM_HOME}:${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
