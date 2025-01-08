@@ -13,7 +13,7 @@ RUN case `uname -m` in \
     esac \
     && echo "${ARCH}" > /tmp/ARCH
 
-RUN apk add unzip
+RUN apk add --no-cache unzip
 
 RUN export ARCH=$(cat /tmp/ARCH) \
     && curl -fsSL "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_${ARCH}.zip" -o "/tmp/packer_${PACKER_VERSION}_linux_${ARCH}.zip" \

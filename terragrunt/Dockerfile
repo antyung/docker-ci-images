@@ -15,7 +15,7 @@ RUN case `uname -m` in \
     esac \
     && echo "${ARCH}" > /tmp/ARCH
 
-RUN apk add unzip tar
+RUN apk add --no-cache unzip tar
 
 RUN export ARCH=$(cat /tmp/ARCH) \
     && curl -fsSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${ARCH}.zip" -o "/tmp/terraform_${TERRAFORM_VERSION}_${ARCH}.zip" \

@@ -14,7 +14,6 @@ ENV PATH="${PNPM_HOME}:${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 RUN apk add --no-cache \
     sudo bash git aws-cli curl ca-certificates jq make nodejs npm \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
-    && mkdir -p /var/cache/apk \
     && ln -s /var/cache/apk /etc/apk/cache
 
 FROM public.ecr.aws/w2u0w5i6/base/node:23.4.0-alpine AS node-build

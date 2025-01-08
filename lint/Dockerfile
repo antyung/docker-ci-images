@@ -13,7 +13,6 @@ ENV PATH="${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 RUN apk add --no-cache \
     sudo bash git aws-cli curl ca-certificates jq \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
-    && mkdir -p /var/cache/apk \
     && ln -s /var/cache/apk /etc/apk/cache
 
 FROM base AS build
