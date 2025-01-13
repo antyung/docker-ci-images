@@ -6,9 +6,6 @@ python = "^3.13"
 boto3 = "1.35.94"
 ansible = "11.1.0"
 
-[tool.poetry.dev-dependencies]
-pytest = "8.3.4"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
