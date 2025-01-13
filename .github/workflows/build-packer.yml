@@ -54,7 +54,7 @@ jobs:
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
 
       - name: 'push'
-        uses: docker/bake-action@v6
+        uses: docker/bake-action@v5
         with:
           targets: push
           workdir: ./${{env.IMAGE}}
