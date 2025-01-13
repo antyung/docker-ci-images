@@ -45,7 +45,6 @@ updates:
     directories:
       - "/ansible"
       - "/aws-cdk"
-      - "/lint"
       - "/node"
       - "/packer"
       - "/terragrunt"
@@ -60,7 +59,6 @@ updates:
     directories:
       - "/ansible"
       - "/aws-cdk"
-      - "/lint"
     schedule:
       interval: daily
     commit-message:
