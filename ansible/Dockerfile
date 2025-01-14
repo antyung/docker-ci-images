@@ -2,6 +2,8 @@
 
 FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS base
 
+USER root
+
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
@@ -45,5 +47,3 @@ COPY --from=build "${POETRY_HOME}" "${POETRY_HOME}"
 COPY --from=build /usr/local/bin/session-manager-plugin /usr/local/bin/session-manager-plugin
 
 RUN chmod +x /usr/local/bin/session-manager-plugin
-
-USER root

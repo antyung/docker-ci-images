@@ -2,6 +2,8 @@
 
 FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS base
 
+USER root
+
 ENV PNPM_HOME="/opt/pnpm" \
     POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
@@ -37,5 +39,3 @@ FROM base AS final
 
 COPY --from=node-build "${PNPM_HOME}" "${PNPM_HOME}"
 COPY --from=python-build "${POETRY_HOME}" "${POETRY_HOME}"
-
-USER root
