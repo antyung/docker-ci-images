@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM public.ecr.aws/w2u0w5i6/base/node:23.4.0-alpine AS base
+FROM public.ecr.aws/w2u0w5i6/base/node:23.6.0-alpine AS base
 
 USER root
 
