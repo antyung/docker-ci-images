@@ -21,7 +21,7 @@ RUN apk add --no-cache tar
 RUN export ARCH=$(cat /tmp/ARCH) \
     && curl -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-rc.1-linux-${ARCH}.tar.gz" -o "/tmp/helm-v${HELM_VERSION}-linux-${ARCH}.tar.gz" \
     && tar -xvf "/tmp/helm-v${HELM_VERSION}-linux-${ARCH}.tar.gz" -C /tmp \
-    && cp /tmp/linux-amd64/helm /usr/local/bin
+    && cp "/tmp/linux-${ARCH}/helm" /usr/local/bin
 
 RUN export ARCH=$(cat /tmp/ARCH) \
     && curl -fsSL "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl" -o "/usr/local/bin/kubectl"
