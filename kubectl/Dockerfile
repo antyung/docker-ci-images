@@ -32,3 +32,6 @@ COPY --from=build /usr/local/bin/helm /usr/local/bin/helm
 COPY --from=build /usr/local/bin/kubectl /usr/local/bin/kubectl
 
 RUN chmod +x /usr/local/bin/helm /usr/local/bin/kubectl
+
+RUN helm completion bash > /etc/bash_completion.d/helm \
+    && kubectl completion bash > /etc/bash_completion.d/kubectl
