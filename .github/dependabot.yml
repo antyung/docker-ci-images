@@ -27,12 +27,12 @@ updates:
 
   - package-ecosystem: docker
     directories:
-      - "/ansible"
-      - "/aws-cdk"
-      - "/node"
-      - "/packer"
-      - "/renovate"
-      - "/terragrunt"
+      - "/ansible/**"
+      - "/aws-cdk/**"
+      - "/node/**"
+      - "/packer/**"
+      - "/renovate/**"
+      - "/terragrunt/**"
     schedule:
       interval: daily
     commit-message:
@@ -42,8 +42,8 @@ updates:
 
   - package-ecosystem: pip
     directories:
-      - "/ansible"
-      - "/aws-cdk"
+      - "/ansible/**"
+      - "/aws-cdk/**"
     schedule:
       interval: daily
     commit-message:
