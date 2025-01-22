@@ -30,7 +30,6 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    registries: ["github-registry"]
 
   - package-ecosystem: docker
     directory: "/.devcontainer"
