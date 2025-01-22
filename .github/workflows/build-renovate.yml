@@ -1,16 +1,16 @@
 ---
-name: 'build kubectl'
+name: 'build renovate'
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'kubectl/**'
+      - 'renovate/**'
   workflow_dispatch:
 
 env:
-  IMAGE: kubectl
+  IMAGE: renovate
   GROUP: ci
   AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
   AWS_ROLE_ARN: ${{secrets.AWS_ROLE_ARN}}
@@ -50,7 +50,7 @@ jobs:
       - name: 'extract version from dockerfile'
         id: extract_version
         run: |
-          DOCKER_TAG=$(sed -n 's/^ARG KUBECTL_VERSION=v\?\([0-9.]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
+          DOCKER_TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
           echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
 

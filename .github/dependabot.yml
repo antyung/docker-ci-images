@@ -47,6 +47,7 @@ updates:
       - "/aws-cdk"
       - "/node"
       - "/packer"
+      - "/renovate"
       - "/terragrunt"
     schedule:
       interval: daily

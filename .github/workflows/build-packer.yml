@@ -11,6 +11,7 @@ on:
 
 env:
   IMAGE: packer
+  GROUP: ci
   AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
   AWS_ROLE_ARN: ${{secrets.AWS_ROLE_ARN}}
 
@@ -52,6 +53,10 @@ jobs:
           DOCKER_TAG=$(sed -n 's/^ARG PACKER_VERSION=v\?\([0-9.]*\).*/\1/p' ./${{env.IMAGE}}/Dockerfile)
           echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
+
+      - name: 'create ecr-public repository'
+        run: |
+          aws ecr-public create-repository --repository-name ${{env.GROUP}}/${{env.IMAGE}} --region us-east-1 || true
 
       - name: 'push'
         uses: docker/bake-action@v5
