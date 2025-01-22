@@ -59,7 +59,7 @@ jobs:
           aws ecr-public create-repository --repository-name ${{env.GROUP}}/${{env.IMAGE}} --region us-east-1 || true
 
       - name: 'push'
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         with:
           targets: push
           workdir: ./${{env.IMAGE}}
