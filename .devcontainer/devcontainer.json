@@ -1,18 +1,17 @@
 {
-  "name": "ci-images",
-  "dockerComposeFile": ["./compose.yml"],
-  "service": "devcontainer-ci-images",
-  "remoteUser": "vscode",
-  "shutdownAction": "stopCompose",
-  "workspaceFolder": "/home/vscode/ci-images",
+  "image": "ghcr.io/antyung/devcontainers/ubuntu:jammy",
+  "name": "docker-ci-images",
   "features": {
       "ghcr.io/antyung/devcontainers/common-utils:1": {},
       "ghcr.io/antyung/devcontainers/docker-in-docker:1": {}
   },
   "customizations": {
     "vscode": {
-      "settings": {"terminal.integrated.defaultProfile.linux": "zsh"},
+      "settings": { "terminal.integrated.defaultProfile.linux": "zsh" },
     "extensions": []
     }
-  }
+  },
+  "containerUser": "vscode",
+  "workspaceMount": "source=${localWorkspaceFolder}/,target=/home/vscode/docker-ci-images,type=bind,consistency=cached", "workspaceFolder": "/home/vscode",
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/docker-ci-images"
 }
