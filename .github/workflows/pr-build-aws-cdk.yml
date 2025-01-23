@@ -13,7 +13,7 @@ on:
       - reopened
 
 env:
-  IMAGE: aws-cdk
+  DOCKER_IMAGE: aws-cdk
   GH_TOKEN: ${{secrets.GH_TOKEN}}
 
 permissions:
@@ -40,7 +40,7 @@ jobs:
         uses: docker/bake-action@v5
         with:
           targets: test
-          workdir: ./${{env.IMAGE}}
+          workdir: ./${{env.DOCKER_IMAGE}}
 
       - name: 'dependabot metadata'
         id: metadata

@@ -3,12 +3,13 @@
   "name": "docker-ci-images",
   "features": {
       "ghcr.io/antyung/devcontainers/common-utils:1": {},
-      "ghcr.io/antyung/devcontainers/docker-in-docker:1": {}
+      "ghcr.io/antyung/devcontainers/docker-in-docker:1": {},
+      "ghcr.io/antyung/devcontainers/golang:1": {}
   },
   "customizations": {
     "vscode": {
       "settings": { "terminal.integrated.defaultProfile.linux": "zsh" },
-    "extensions": []
+    "extensions": ["golang.Go"]
     }
   },
   "containerUser": "vscode",

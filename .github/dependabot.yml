@@ -22,13 +22,22 @@ updates:
     schedule:
       interval: weekly
     commit-message:
-      prefix: "chore"
+      prefix: "build"
+      include: "scope"
+
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "test"
       include: "scope"
 
   - package-ecosystem: docker
     directories:
       - "/ansible/**"
       - "/aws-cdk/**"
+      - "/kubectl/**"
       - "/node/**"
       - "/packer/**"
       - "/renovate/**"
@@ -36,7 +45,7 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore"
+      prefix: "build"
       include: "scope"
     registries: ["dockerhub-registry"]
 
@@ -47,5 +56,5 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore"
+      prefix: "build"
       include: "scope"
