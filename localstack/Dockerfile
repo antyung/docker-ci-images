@@ -5,7 +5,7 @@ FROM localstack/localstack:4.0.3 AS base
 USER root
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends locales-all awscli \
+    && apt-get install -y --no-install-recommends locales-all \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
