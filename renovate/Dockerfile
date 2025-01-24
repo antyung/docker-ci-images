@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM renovate/renovate:39.125.1 AS base
+FROM renovate/renovate:39.126.1 AS base
 
 USER root
 
