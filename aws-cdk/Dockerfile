@@ -18,7 +18,7 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
     && ln -s /var/cache/apk /etc/apk/cache
 
-FROM public.ecr.aws/w2u0w5i6/base/node:23.6.0-alpine AS build-node
+FROM public.ecr.aws/w2u0w5i6/base/node:23.6.1-alpine AS build-node
 
 ARG AWSCDK_VERSION=2.171.1
 
