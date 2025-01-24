@@ -1,17 +1,17 @@
-variable "AWS_ECR_URI" {
-  default = "public.ecr.aws/w2u0w5i6"
-}
-
-variable "DOCKER_GROUP" {
-  default = "ci"
-}
-
 variable "DOCKER_IMAGE" {
   default = "aws-cdk"
 }
 
 variable "DOCKER_TAG" {
   default = "latest"
+}
+
+variable "AWS_ECR_URI" {
+  default = "public.ecr.aws/w2u0w5i6"
+}
+
+variable "DOCKER_IMAGE_GROUP" {
+  default = "ci"
 }
 
 group "default" {
@@ -41,8 +41,8 @@ target "build" {
   inherits = ["settings"]
   output   = ["type=docker"]
   tags = [
-    "${AWS_ECR_URI}/${DOCKER_GROUP}/${DOCKER_IMAGE}:latest",
-    "${AWS_ECR_URI}/${DOCKER_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}",
+    "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:latest",
+    "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}",
   ]
 }
 
@@ -54,8 +54,8 @@ target "push" {
     "linux/arm64",
   ]
   tags = [
-    "${AWS_ECR_URI}/${DOCKER_GROUP}/${DOCKER_IMAGE}:latest",
-    "${AWS_ECR_URI}/${DOCKER_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}",
-    "${AWS_ECR_URI}/${DOCKER_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}-alpine",
+    "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:latest",
+    "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}",
+    "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:${DOCKER_TAG}-alpine",
   ]
 }

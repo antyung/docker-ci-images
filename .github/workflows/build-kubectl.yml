@@ -11,7 +11,7 @@ on:
 
 env:
   DOCKER_IMAGE: kubectl
-  DOCKER_GROUP: ci
+  DOCKER_IMAGE_GROUP: ci
   AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
   AWS_OIDC_ROLE_ARN: ${{secrets.AWS_OIDC_ROLE_ARN}}
 
@@ -56,7 +56,7 @@ jobs:
 
       - name: 'create ecr-public repository'
         run: |
-          aws ecr-public create-repository --repository-name ${{env.DOCKER_GROUP}}/${{env.DOCKER_IMAGE}} --region us-east-1 || true
+          aws ecr-public create-repository --repository-name ${{env.DOCKER_IMAGE_GROUP}}/${{env.DOCKER_IMAGE}} --region us-east-1 || true
 
       - name: 'push'
         uses: docker/bake-action@v5

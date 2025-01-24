@@ -18,13 +18,13 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
     && ln -s /var/cache/apk /etc/apk/cache
 
-FROM public.ecr.aws/w2u0w5i6/base/node:23.6.1-alpine AS node-build
+FROM public.ecr.aws/w2u0w5i6/base/node:23.6.0-alpine AS build-node
 
 ARG AWSCDK_VERSION=2.171.1
 
 RUN pnpm install -g aws-cdk@${AWSCDK_VERSION}
 
-FROM base AS python-build
+FROM base AS build-python
 
 WORKDIR "${POETRY_HOME}"
 
@@ -37,5 +37,5 @@ RUN source "${POETRY_HOME}/venv/bin/activate" \
 
 FROM base AS final
 
-COPY --from=node-build "${PNPM_HOME}" "${PNPM_HOME}"
-COPY --from=python-build "${POETRY_HOME}" "${POETRY_HOME}"
+COPY --from=build-node "${PNPM_HOME}" "${PNPM_HOME}"
+COPY --from=build-python "${POETRY_HOME}" "${POETRY_HOME}"
