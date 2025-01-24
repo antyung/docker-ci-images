@@ -38,6 +38,7 @@ updates:
       - "/ansible/**"
       - "/aws-cdk/**"
       - "/kubectl/**"
+      - "/localstack/**"
       - "/node/**"
       - "/packer/**"
       - "/renovate/**"
