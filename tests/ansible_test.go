@@ -2,7 +2,6 @@ package tests
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -24,31 +23,29 @@ var Ansible = struct {
 
 func TestBuildAnsible(t *testing.T) {
 	ctx := context.Background()
-	req := testcontainers.ContainerRequest{
-		FromDockerfile: testcontainers.FromDockerfile{
-			Context:       fmt.Sprintf("../%s/", Ansible.DOCKER_IMAGE),
-			Dockerfile:    "Dockerfile",
-			KeepImage:     false,
-			PrintBuildLog: true,
-		},
-	}
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
+		ContainerRequest: testcontainers.ContainerRequest{
+			FromDockerfile: testcontainers.FromDockerfile{
+				Context:       "../" + Ansible.DOCKER_IMAGE + "/",
+				Dockerfile:    "Dockerfile",
+				KeepImage:     false,
+				PrintBuildLog: true,
+			},
+		},
+		Started: true,
 	})
-	testcontainers.CleanupContainer(t, container)
 	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
 }
 
 func TestPullAnsible(t *testing.T) {
 	ctx := context.Background()
-	req := testcontainers.ContainerRequest{
-		Image: fmt.Sprintf("%s/%s/%s:%s", Ansible.AWS_ECR_URI, Ansible.DOCKER_IMAGE_GROUP, Ansible.DOCKER_IMAGE, Ansible.DOCKER_TAG),
-	}
-	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Ansible.AWS_ECR_URI + "/" + Ansible.DOCKER_IMAGE_GROUP + "/" + Ansible.DOCKER_IMAGE + ":" + Ansible.DOCKER_TAG,
+		},
+		Started: false,
 	})
+	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
-	require.NoError(t, err)
 }

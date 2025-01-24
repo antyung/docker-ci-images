@@ -2,7 +2,6 @@ package tests
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -24,31 +23,29 @@ var Renovate = struct {
 
 func TestBuildRenovate(t *testing.T) {
 	ctx := context.Background()
-	req := testcontainers.ContainerRequest{
-		FromDockerfile: testcontainers.FromDockerfile{
-			Context:       fmt.Sprintf("../%s/", Renovate.DOCKER_IMAGE),
-			Dockerfile:    "Dockerfile",
-			KeepImage:     false,
-			PrintBuildLog: true,
-		},
-	}
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
+		ContainerRequest: testcontainers.ContainerRequest{
+			FromDockerfile: testcontainers.FromDockerfile{
+				Context:       "../" + Renovate.DOCKER_IMAGE + "/",
+				Dockerfile:    "Dockerfile",
+				KeepImage:     false,
+				PrintBuildLog: true,
+			},
+		},
+		Started: true,
 	})
-	testcontainers.CleanupContainer(t, container)
 	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
 }
 
 func TestPullRenovate(t *testing.T) {
 	ctx := context.Background()
-	req := testcontainers.ContainerRequest{
-		Image: fmt.Sprintf("%s/%s/%s:%s", Renovate.AWS_ECR_URI, Renovate.DOCKER_IMAGE_GROUP, Renovate.DOCKER_IMAGE, Renovate.DOCKER_TAG),
-	}
-	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Renovate.AWS_ECR_URI + "/" + Renovate.DOCKER_IMAGE_GROUP + "/" + Renovate.DOCKER_IMAGE + ":" + Renovate.DOCKER_TAG,
+		},
+		Started: false,
 	})
+	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
-	require.NoError(t, err)
 }
