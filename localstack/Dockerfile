@@ -14,7 +14,7 @@ ENV TZ="Asia/Singapore" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
 
-FROM public.ecr.aws/w2u0w5i6/base/ubuntu:jammy AS build
+FROM base AS build
 
 ARG TERRAGRUNT_VERSION=0.69.1
 ARG TERRAFORM_VERSION=1.10.0
