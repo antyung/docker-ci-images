@@ -49,3 +49,16 @@ func TestPullLocalstack(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecLocalstack(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Localstack.AWS_ECR_URI + "/" + Localstack.DOCKER_IMAGE_GROUP + "/" + Localstack.DOCKER_IMAGE + ":" + Localstack.DOCKER_TAG,
+			Cmd:   []string{"awslocal", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

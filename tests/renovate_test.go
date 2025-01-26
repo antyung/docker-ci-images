@@ -49,3 +49,16 @@ func TestPullRenovate(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecRenovate(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Renovate.AWS_ECR_URI + "/" + Renovate.DOCKER_IMAGE_GROUP + "/" + Renovate.DOCKER_IMAGE + ":" + Renovate.DOCKER_TAG,
+			Cmd:   []string{"renovate", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

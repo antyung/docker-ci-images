@@ -49,3 +49,16 @@ func TestPullPacker(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecPacker(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Packer.AWS_ECR_URI + "/" + Packer.DOCKER_IMAGE_GROUP + "/" + Packer.DOCKER_IMAGE + ":" + Packer.DOCKER_TAG,
+			Cmd:   []string{"packer", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

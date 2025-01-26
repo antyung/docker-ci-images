@@ -13,7 +13,7 @@ ENV POETRY_NO_INTERACTION=1 \
 ENV PATH="${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 
 RUN apk add --no-cache \
-    sudo bash git aws-cli curl ca-certificates jq make openssh sshpass libc6-compat \
+    sudo bash bash-completion git aws-cli curl ca-certificates jq make openssh sshpass libc6-compat \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
     && ln -s /var/cache/apk /etc/apk/cache
 

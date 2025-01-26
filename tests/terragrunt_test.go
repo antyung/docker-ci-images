@@ -49,3 +49,16 @@ func TestPullTerragrunt(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecTerragrunt(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Terragrunt.AWS_ECR_URI + "/" + Terragrunt.DOCKER_IMAGE_GROUP + "/" + Terragrunt.DOCKER_IMAGE + ":" + Terragrunt.DOCKER_TAG,
+			Cmd:   []string{"terragrunt", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

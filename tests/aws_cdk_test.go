@@ -49,3 +49,16 @@ func TestPullAwsCdk(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecAwsCdk(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: AwsCdk.AWS_ECR_URI + "/" + AwsCdk.DOCKER_IMAGE_GROUP + "/" + AwsCdk.DOCKER_IMAGE + ":" + AwsCdk.DOCKER_TAG,
+			Cmd:   []string{"cdk", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

@@ -50,7 +50,7 @@ jobs:
       - name: 'extract version from dockerfile'
         id: extract_version
         run: |
-          DOCKER_TAG=$(sed -n 's/^ARG KUBECTL_VERSION=v\?\([0-9.]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile)
+          DOCKER_TAG=$(sed -n 's/^ARG KUBECTL_VERSION=v\?\([0-9.]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile.alpine)
           echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
 

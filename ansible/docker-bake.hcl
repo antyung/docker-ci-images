@@ -30,6 +30,7 @@ target "settings" {
 
 target "test" {
   inherits = ["settings"]
+  dockerfile = "Dockerfile.alpine"
   platforms = [
     "linux/amd64",
     "linux/arm64",
@@ -39,6 +40,7 @@ target "test" {
 
 target "build" {
   inherits = ["settings"]
+  dockerfile = "Dockerfile.alpine"
   output   = ["type=docker"]
   tags = [
     "${AWS_ECR_URI}/${DOCKER_IMAGE_GROUP}/${DOCKER_IMAGE}:latest",
@@ -48,6 +50,7 @@ target "build" {
 
 target "push" {
   inherits = ["settings"]
+  dockerfile = "Dockerfile.alpine"
   output   = ["type=registry"]
   platforms = [
     "linux/amd64",

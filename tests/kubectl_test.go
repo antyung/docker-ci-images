@@ -49,3 +49,16 @@ func TestPullKubectl(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecKubectl(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Kubectl.AWS_ECR_URI + "/" + Kubectl.DOCKER_IMAGE_GROUP + "/" + Kubectl.DOCKER_IMAGE + ":" + Kubectl.DOCKER_TAG,
+			Cmd:   []string{"kubectl", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}

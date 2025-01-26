@@ -49,3 +49,16 @@ func TestPullAnsible(t *testing.T) {
 	require.NoError(t, e)
 	testcontainers.CleanupContainer(t, container)
 }
+
+func TestExecAnsible(t *testing.T) {
+	ctx := context.Background()
+	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: testcontainers.ContainerRequest{
+			Image: Ansible.AWS_ECR_URI + "/" + Ansible.DOCKER_IMAGE_GROUP + "/" + Ansible.DOCKER_IMAGE + ":" + Ansible.DOCKER_TAG,
+			Cmd:   []string{"ansible", "--version"},
+		},
+		Started: true,
+	})
+	require.NoError(t, e)
+	testcontainers.CleanupContainer(t, container)
+}
