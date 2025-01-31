@@ -1,5 +1,5 @@
 ---
-name: 'build aws-cdk'
+name: 'Build aws-cdk'
 
 on:
   push:

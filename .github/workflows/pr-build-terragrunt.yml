@@ -1,5 +1,5 @@
 ---
-name: 'pr-build terragrunt'
+name: 'PR Build terragrunt'
 
 on:
   pull_request:

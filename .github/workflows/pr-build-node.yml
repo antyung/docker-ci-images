@@ -1,5 +1,5 @@
 ---
-name: 'pr-build node'
+name: 'PR Build node'
 
 on:
   pull_request:

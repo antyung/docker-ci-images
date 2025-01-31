@@ -1,5 +1,5 @@
 ---
-name: 'pr-build ansible'
+name: 'PR Build ansible'
 
 on:
   pull_request:

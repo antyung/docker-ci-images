@@ -1,5 +1,5 @@
 ---
-name: 'build kubectl'
+name: 'Build kubectl'
 
 on:
   push:

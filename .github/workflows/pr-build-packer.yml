@@ -1,5 +1,5 @@
 ---
-name: 'pr-build packer'
+name: 'PR Build packer'
 
 on:
   pull_request:

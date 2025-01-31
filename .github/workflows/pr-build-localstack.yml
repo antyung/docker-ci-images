@@ -1,5 +1,5 @@
 ---
-name: 'pr-build localstack'
+name: 'PR Build localstack'
 
 on:
   pull_request:

@@ -1,5 +1,5 @@
 ---
-name: 'build localstack'
+name: 'Build localstack'
 
 on:
   push:
