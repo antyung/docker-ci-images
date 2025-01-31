@@ -4,10 +4,7 @@ FROM localstack/localstack:4.1.0 AS base
 
 USER root
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends locales-all \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends locales-all
 
 ENV TZ=Asia/Singapore \
     LANG=en_US.UTF-8 \
@@ -19,8 +16,7 @@ FROM base AS build
 ARG TERRAGRUNT_VERSION=0.69.1
 ARG TERRAFORM_VERSION=1.10.0
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends unzip
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends unzip
 
 RUN curl -fsSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac).zip" -o /tmp/terraform.zip \
     && unzip /tmp/terraform.zip -d /tmp \
@@ -30,6 +26,9 @@ RUN curl -fsSL "https://github.com/gruntwork-io/terragrunt/releases/download/v${
     && cp /tmp/terragrunt /usr/local/bin/terragrunt
 
 FROM base AS final
+
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /usr/local/bin/terraform /usr/local/bin/terraform
 COPY --from=build /usr/local/bin/terragrunt /usr/local/bin/terragrunt
