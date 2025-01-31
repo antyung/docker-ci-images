@@ -1,5 +1,5 @@
 ---
-name: 'tests'
+name: 'schedule tests'
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
     - cron: '0 6 * * *'
 
 jobs:
-  build-push:
+  schedule-tests:
     runs-on: ubuntu-latest
     steps:
       - name: 'checkout'
