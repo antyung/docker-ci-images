@@ -21,7 +21,7 @@ var Python = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildPython(t *testing.T) {
+func TestContainerBuildPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildPython(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullPython(t *testing.T) {
+func TestContainerPullPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullPython(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecPython(t *testing.T) {
+func TestContainerExecPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

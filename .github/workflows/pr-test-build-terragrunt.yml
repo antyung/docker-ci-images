@@ -1,19 +1,19 @@
 ---
-name: 'PR Build localstack'
+name: 'PR Build terragrunt'
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'localstack/**'
+      - 'terragrunt/**'
     types:
       - opened
       - synchronize
       - reopened
 
 env:
-  DOCKER_IMAGE: localstack
+  DOCKER_IMAGE: terragrunt
   GH_TOKEN: ${{secrets.GH_TOKEN}}
 
 permissions:
@@ -21,7 +21,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  test-build:
     runs-on: ubuntu-latest
     if: ${{github.actor == 'dependabot[bot]'}}
     steps:
@@ -36,7 +36,7 @@ jobs:
       - name: 'set up docker buildx'
         uses: docker/setup-buildx-action@v3
 
-      - name: 'test'
+      - name: 'test build'
         uses: docker/bake-action@v5
         with:
           targets: test

@@ -21,7 +21,7 @@ var Terragrunt = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildTerragrunt(t *testing.T) {
+func TestContainerBuildTerragrunt(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildTerragrunt(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullTerragrunt(t *testing.T) {
+func TestContainerPullTerragrunt(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullTerragrunt(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecTerragrunt(t *testing.T) {
+func TestContainerExecTerragrunt(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

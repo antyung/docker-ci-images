@@ -21,7 +21,7 @@ var Ansible = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildAnsible(t *testing.T) {
+func TestContainerBuildAnsible(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildAnsible(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullAnsible(t *testing.T) {
+func TestContainerPullAnsible(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullAnsible(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecAnsible(t *testing.T) {
+func TestContainerExecAnsible(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

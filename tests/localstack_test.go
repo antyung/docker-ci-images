@@ -21,7 +21,7 @@ var Localstack = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildLocalstack(t *testing.T) {
+func TestContainerBuildLocalstack(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildLocalstack(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullLocalstack(t *testing.T) {
+func TestContainerPullLocalstack(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullLocalstack(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecLocalstack(t *testing.T) {
+func TestContainerExecLocalstack(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

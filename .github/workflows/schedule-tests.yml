@@ -29,5 +29,5 @@ jobs:
 
       - name: 'run tests'
         run: |
-          go test -run 'TestPull.*' ./... -v
-          go test -run 'TestExec.*' ./... -v
+          go test -run 'TestContainerPull.*' ./... -v
+          go test -run 'TestContainerExec.*' ./... -v

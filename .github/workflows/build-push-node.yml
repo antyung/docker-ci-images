@@ -1,18 +1,18 @@
 ---
-name: 'Build localstack'
+name: 'Build Push node'
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'localstack/**'
+      - 'node/**'
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE: localstack
+  DOCKER_IMAGE: node
   DOCKER_IMAGE_GROUP: ci
-  AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+  AWS_DEFAULT_REGION: us-east-1
   AWS_OIDC_ROLE_ARN: ${{secrets.AWS_OIDC_ROLE_ARN}}
 
 permissions:
@@ -50,15 +50,15 @@ jobs:
       - name: 'extract version from dockerfile'
         id: extract_version
         run: |
-          DOCKER_TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile.ubuntu)
+          DOCKER_TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile.alpine)
           echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
 
       - name: 'create ecr-public repository'
         run: |
-          aws ecr-public create-repository --repository-name ${{env.DOCKER_IMAGE_GROUP}}/${{env.DOCKER_IMAGE}} --region us-east-1 || true
+          aws ecr-public create-repository --repository-name ${{env.DOCKER_IMAGE_GROUP}}/${{env.DOCKER_IMAGE}} --region ${{env.AWS_DEFAULT_REGION}} || true
 
-      - name: 'push'
+      - name: 'build-push'
         uses: docker/bake-action@v5
         with:
           targets: push

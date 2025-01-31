@@ -21,7 +21,7 @@ var Kubectl = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildKubectl(t *testing.T) {
+func TestContainerBuildKubectl(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildKubectl(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullKubectl(t *testing.T) {
+func TestContainerPullKubectl(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullKubectl(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecKubectl(t *testing.T) {
+func TestContainerExecKubectl(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

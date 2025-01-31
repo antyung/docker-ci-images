@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/antyung/devcontainers/ubuntu:jammy",
+  "image": "public.ecr.aws/w2u0w5i6/devcontainer/ubuntu-base:jammy",
   "name": "docker-ci-images",
   "features": {
       "ghcr.io/antyung/devcontainers/common-utils:1": {},

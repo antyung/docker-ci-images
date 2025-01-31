@@ -21,7 +21,7 @@ var Packer = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildPacker(t *testing.T) {
+func TestContainerBuildPacker(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildPacker(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullPacker(t *testing.T) {
+func TestContainerPullPacker(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullPacker(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecPacker(t *testing.T) {
+func TestContainerExecPacker(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

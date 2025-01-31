@@ -13,7 +13,7 @@ ARG TERRAFORMDOCS_VERSION=0.19.0
 RUN apk add --no-cache unzip tar
 
 RUN curl -fsSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac).zip" -o /tmp/terraform.zip \
-    && unzip "/tmp/terraform.zip" -d /tmp \
+    && unzip /tmp/terraform.zip -d /tmp \
     && cp /tmp/terraform /usr/local/bin/terraform
 
 RUN curl -fsSL "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac)" -o /tmp/terragrunt \

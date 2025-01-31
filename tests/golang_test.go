@@ -21,7 +21,7 @@ var Golang = struct {
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildGolang(t *testing.T) {
+func TestContainerBuildGolang(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -38,7 +38,7 @@ func TestBuildGolang(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullGolang(t *testing.T) {
+func TestContainerPullGolang(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
@@ -50,7 +50,7 @@ func TestPullGolang(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecGolang(t *testing.T) {
+func TestContainerExecGolang(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{

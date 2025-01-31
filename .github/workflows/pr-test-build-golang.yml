@@ -1,19 +1,19 @@
 ---
-name: 'PR Build kubectl'
+name: 'PR Build golang'
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'kubectl/**'
+      - 'golang/**'
     types:
       - opened
       - synchronize
       - reopened
 
 env:
-  DOCKER_IMAGE: kubectl
+  DOCKER_IMAGE: golang
   GH_TOKEN: ${{secrets.GH_TOKEN}}
 
 permissions:
@@ -21,7 +21,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  test-build:
     runs-on: ubuntu-latest
     if: ${{github.actor == 'dependabot[bot]'}}
     steps:
@@ -36,7 +36,7 @@ jobs:
       - name: 'set up docker buildx'
         uses: docker/setup-buildx-action@v3
 
-      - name: 'test'
+      - name: 'test build'
         uses: docker/bake-action@v5
         with:
           targets: test

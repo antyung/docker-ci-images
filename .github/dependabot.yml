@@ -16,19 +16,27 @@ updates:
     commit-message:
       prefix: "ci"
 
-  - package-ecosystem: devcontainers
-    directory: "/"
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: "build"
-
   - package-ecosystem: gomod
     directory: "/"
     schedule:
       interval: weekly
     commit-message:
       prefix: "test"
+
+  - package-ecosystem: devcontainers
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "dev"
+
+  - package-ecosystem: pip
+    directories:
+      - "/ansible/**"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "build"
 
   - package-ecosystem: docker
     directories:
@@ -45,11 +53,3 @@ updates:
     commit-message:
       prefix: "build"
     registries: ["dockerhub-registry"]
-
-  - package-ecosystem: pip
-    directories:
-      - "/ansible/**"
-    schedule:
-      interval: daily
-    commit-message:
-      prefix: "build"
