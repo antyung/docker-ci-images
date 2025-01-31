@@ -4,7 +4,7 @@ FROM localstack/localstack:4.1.0 AS base
 
 USER root
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends locales-all
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends locales-all ca-certificates
 
 ENV TZ=Asia/Singapore \
     LANG=en_US.UTF-8 \
