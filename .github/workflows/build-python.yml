@@ -1,16 +1,16 @@
 ---
-name: 'Build aws-cdk'
+name: 'Build python'
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'aws-cdk/**'
+      - 'python/**'
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE: aws-cdk
+  DOCKER_IMAGE: python
   DOCKER_IMAGE_GROUP: ci
   AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
   AWS_OIDC_ROLE_ARN: ${{secrets.AWS_OIDC_ROLE_ARN}}
@@ -50,7 +50,7 @@ jobs:
       - name: 'extract version from dockerfile'
         id: extract_version
         run: |
-          DOCKER_TAG=$(sed -n 's/^ARG AWSCDK_VERSION=v\?\([0-9.]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile.alpine)
+          DOCKER_TAG=$(sed -n 's/^FROM .*:\([^ -]*\).*/\1/p' ./${{env.DOCKER_IMAGE}}/Dockerfile.alpine)
           echo "DOCKER_TAG=${DOCKER_TAG#v}" >> $GITHUB_ENV
           echo "DOCKER_TAG=${DOCKER_TAG#v}"
 

@@ -15,7 +15,6 @@ updates:
       interval: weekly
     commit-message:
       prefix: "ci"
-      include: "scope"
 
   - package-ecosystem: devcontainers
     directory: "/"
@@ -23,7 +22,6 @@ updates:
       interval: weekly
     commit-message:
       prefix: "build"
-      include: "scope"
 
   - package-ecosystem: gomod
     directory: "/"
@@ -31,30 +29,27 @@ updates:
       interval: weekly
     commit-message:
       prefix: "test"
-      include: "scope"
 
   - package-ecosystem: docker
     directories:
       - "/ansible/**"
-      - "/aws-cdk/**"
+      - "/golang/**"
       - "/kubectl/**"
       - "/localstack/**"
       - "/node/**"
       - "/packer/**"
+      - "/python/**"
       - "/terragrunt/**"
     schedule:
       interval: daily
     commit-message:
       prefix: "build"
-      include: "scope"
     registries: ["dockerhub-registry"]
 
   - package-ecosystem: pip
     directories:
       - "/ansible/**"
-      - "/aws-cdk/**"
     schedule:
       interval: daily
     commit-message:
       prefix: "build"
-      include: "scope"

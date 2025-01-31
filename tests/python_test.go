@@ -9,24 +9,24 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 )
 
-var AwsCdk = struct {
+var Python = struct {
 	DOCKER_IMAGE       string
 	DOCKER_TAG         string
 	AWS_ECR_URI        string
 	DOCKER_IMAGE_GROUP string
 }{
-	DOCKER_IMAGE:       "aws-cdk",
+	DOCKER_IMAGE:       "python",
 	DOCKER_TAG:         "latest",
 	AWS_ECR_URI:        "public.ecr.aws/w2u0w5i6",
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestBuildAwsCdk(t *testing.T) {
+func TestBuildPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
-				Context:       "../" + AwsCdk.DOCKER_IMAGE + "/",
+				Context:       "../" + Python.DOCKER_IMAGE + "/",
 				Dockerfile:    "Dockerfile",
 				KeepImage:     false,
 				PrintBuildLog: true,
@@ -38,11 +38,11 @@ func TestBuildAwsCdk(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestPullAwsCdk(t *testing.T) {
+func TestPullPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: AwsCdk.AWS_ECR_URI + "/" + AwsCdk.DOCKER_IMAGE_GROUP + "/" + AwsCdk.DOCKER_IMAGE + ":" + AwsCdk.DOCKER_TAG,
+			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_TAG,
 		},
 		Started: false,
 	})
@@ -50,12 +50,12 @@ func TestPullAwsCdk(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestExecAwsCdk(t *testing.T) {
+func TestExecPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: AwsCdk.AWS_ECR_URI + "/" + AwsCdk.DOCKER_IMAGE_GROUP + "/" + AwsCdk.DOCKER_IMAGE + ":" + AwsCdk.DOCKER_TAG,
-			Cmd:   []string{"cdk", "--version"},
+			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_TAG,
+			Cmd:   []string{"python", "--version"},
 		},
 		Started: true,
 	})

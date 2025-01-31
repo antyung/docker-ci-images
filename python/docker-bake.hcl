@@ -1,5 +1,5 @@
 variable "DOCKER_IMAGE" {
-  default = "aws-cdk"
+  default = "python"
 }
 
 variable "DOCKER_TAG" {

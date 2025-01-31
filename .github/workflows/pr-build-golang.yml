@@ -1,19 +1,19 @@
 ---
-name: 'PR Build aws-cdk'
+name: 'PR Build golang'
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'aws-cdk/**'
+      - 'golang/**'
     types:
       - opened
       - synchronize
       - reopened
 
 env:
-  DOCKER_IMAGE: aws-cdk
+  DOCKER_IMAGE: golang
   GH_TOKEN: ${{secrets.GH_TOKEN}}
 
 permissions:

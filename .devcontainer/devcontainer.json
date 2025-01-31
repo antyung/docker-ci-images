@@ -14,5 +14,5 @@
   },
   "containerUser": "vscode",
   "workspaceMount": "source=${localWorkspaceFolder}/,target=/home/vscode/docker-ci-images,type=bind,consistency=cached", "workspaceFolder": "/home/vscode",
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/docker-ci-images"
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode"
 }
