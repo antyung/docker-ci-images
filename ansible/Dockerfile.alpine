@@ -2,8 +2,6 @@
 
 FROM public.ecr.aws/w2u0w5i6/base/python:3.13.1-alpine AS base
 
-USER root
-
 ENV HOME=/root \
     POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
@@ -14,7 +12,7 @@ ENV HOME=/root \
 ENV PATH="${POETRY_HOME}/bin:${POETRY_HOME}/venv/bin:${PATH}"
 
 RUN apk add --no-cache \
-    sudo bash bash-completion git aws-cli curl ca-certificates jq make openssh sshpass libc6-compat \
+    sudo bash git aws-cli curl ca-certificates jq make openssh sshpass libc6-compat \
     && rm -rf /var/cache/apk/* /etc/apk/cache/* \
     && ln -s /var/cache/apk /etc/apk/cache
 

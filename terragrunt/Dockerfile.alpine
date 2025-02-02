@@ -2,8 +2,6 @@
 
 FROM public.ecr.aws/w2u0w5i6/base/alpine-ci:3.21 AS base
 
-USER root
-
 FROM base AS build
 
 ARG TERRAGRUNT_VERSION=0.69.1
