@@ -40,6 +40,7 @@ updates:
 
   - package-ecosystem: docker
     directories:
+      - "/alpine-build/**"
       - "/ansible/**"
       - "/golang/**"
       - "/kubectl/**"

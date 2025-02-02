@@ -27,7 +27,7 @@ func TestContainerBuildGolang(t *testing.T) {
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
 				Context:       "../" + Golang.DOCKER_IMAGE + "/",
-				Dockerfile:    "Dockerfile",
+				Dockerfile:    "Dockerfile.alpine",
 				KeepImage:     false,
 				PrintBuildLog: true,
 			},

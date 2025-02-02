@@ -27,7 +27,7 @@ func TestContainerBuildKubectl(t *testing.T) {
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
 				Context:       "../" + Kubectl.DOCKER_IMAGE + "/",
-				Dockerfile:    "Dockerfile",
+				Dockerfile:    "Dockerfile.alpine",
 				KeepImage:     false,
 				PrintBuildLog: true,
 			},

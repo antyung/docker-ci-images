@@ -27,7 +27,7 @@ func TestContainerBuildLocalstack(t *testing.T) {
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
 				Context:       "../" + Localstack.DOCKER_IMAGE + "/",
-				Dockerfile:    "Dockerfile",
+				Dockerfile:    "Dockerfile.ubuntu",
 				KeepImage:     false,
 				PrintBuildLog: true,
 			},

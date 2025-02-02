@@ -9,24 +9,24 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 )
 
-var Terragrunt = struct {
+var AlpineBuild = struct {
 	DOCKER_IMAGE       string
 	DOCKER_TAG         string
 	AWS_ECR_URI        string
 	DOCKER_IMAGE_GROUP string
 }{
-	DOCKER_IMAGE:       "terragrunt",
+	DOCKER_IMAGE:       "alpine-build",
 	DOCKER_TAG:         "latest",
 	AWS_ECR_URI:        "public.ecr.aws/w2u0w5i6",
 	DOCKER_IMAGE_GROUP: "ci",
 }
 
-func TestContainerBuildTerragrunt(t *testing.T) {
+func TestContainerBuildAlpineBuild(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
-				Context:       "../" + Terragrunt.DOCKER_IMAGE + "/",
+				Context:       "../" + AlpineBuild.DOCKER_IMAGE + "/",
 				Dockerfile:    "Dockerfile.alpine",
 				KeepImage:     false,
 				PrintBuildLog: true,
@@ -38,11 +38,11 @@ func TestContainerBuildTerragrunt(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestContainerPullTerragrunt(t *testing.T) {
+func TestContainerPullAlpineBuild(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Terragrunt.AWS_ECR_URI + "/" + Terragrunt.DOCKER_IMAGE_GROUP + "/" + Terragrunt.DOCKER_IMAGE + ":" + Terragrunt.DOCKER_TAG,
+			Image: AlpineBuild.AWS_ECR_URI + "/" + AlpineBuild.DOCKER_IMAGE_GROUP + "/" + AlpineBuild.DOCKER_IMAGE + ":" + AlpineBuild.DOCKER_TAG,
 		},
 		Started: false,
 	})
@@ -50,12 +50,12 @@ func TestContainerPullTerragrunt(t *testing.T) {
 	testcontainers.CleanupContainer(t, container)
 }
 
-func TestContainerExecTerragrunt(t *testing.T) {
+func TestContainerExecAlpineBuild(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Terragrunt.AWS_ECR_URI + "/" + Terragrunt.DOCKER_IMAGE_GROUP + "/" + Terragrunt.DOCKER_IMAGE + ":" + Terragrunt.DOCKER_TAG,
-			Cmd:   []string{"terragrunt", "--version"},
+			Image: AlpineBuild.AWS_ECR_URI + "/" + AlpineBuild.DOCKER_IMAGE_GROUP + "/" + AlpineBuild.DOCKER_IMAGE + ":" + AlpineBuild.DOCKER_TAG,
+			Cmd:   []string{"gcc", "--version"},
 		},
 		Started: true,
 	})

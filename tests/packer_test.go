@@ -27,7 +27,7 @@ func TestContainerBuildPacker(t *testing.T) {
 		ContainerRequest: testcontainers.ContainerRequest{
 			FromDockerfile: testcontainers.FromDockerfile{
 				Context:       "../" + Packer.DOCKER_IMAGE + "/",
-				Dockerfile:    "Dockerfile",
+				Dockerfile:    "Dockerfile.alpine",
 				KeepImage:     false,
 				PrintBuildLog: true,
 			},
