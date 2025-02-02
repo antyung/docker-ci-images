@@ -20,6 +20,9 @@ jobs:
         with:
           show-progress: false
 
+      - name: 'set shell options globally'
+        run: set -euxo pipefail
+
       - name: 'setup go'
         uses: actions/setup-go@v5
         with:

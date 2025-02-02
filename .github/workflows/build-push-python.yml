@@ -28,6 +28,9 @@ jobs:
         with:
           show-progress: false
 
+      - name: 'set shell options globally'
+        run: set -euxo pipefail
+
       - name: 'setup qemu'
         uses: docker/setup-qemu-action@v3
 
