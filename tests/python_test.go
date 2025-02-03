@@ -11,12 +11,12 @@ import (
 
 var Python = struct {
 	DOCKER_IMAGE       string
-	DOCKER_TAG         string
+	DOCKER_IMAGE_TAG   string
 	AWS_ECR_URI        string
 	DOCKER_IMAGE_GROUP string
 }{
 	DOCKER_IMAGE:       "python",
-	DOCKER_TAG:         "latest",
+	DOCKER_IMAGE_TAG:   "latest",
 	AWS_ECR_URI:        "public.ecr.aws/w2u0w5i6",
 	DOCKER_IMAGE_GROUP: "ci",
 }
@@ -42,7 +42,7 @@ func TestContainerPullPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_TAG,
+			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_IMAGE_TAG,
 		},
 		Started: false,
 	})
@@ -54,7 +54,7 @@ func TestContainerExecPython(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_TAG,
+			Image: Python.AWS_ECR_URI + "/" + Python.DOCKER_IMAGE_GROUP + "/" + Python.DOCKER_IMAGE + ":" + Python.DOCKER_IMAGE_TAG,
 			Cmd:   []string{"python", "--version"},
 		},
 		Started: true,

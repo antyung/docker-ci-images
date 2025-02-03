@@ -11,12 +11,12 @@ import (
 
 var Localstack = struct {
 	DOCKER_IMAGE       string
-	DOCKER_TAG         string
+	DOCKER_IMAGE_TAG   string
 	AWS_ECR_URI        string
 	DOCKER_IMAGE_GROUP string
 }{
 	DOCKER_IMAGE:       "localstack",
-	DOCKER_TAG:         "latest",
+	DOCKER_IMAGE_TAG:   "latest",
 	AWS_ECR_URI:        "public.ecr.aws/w2u0w5i6",
 	DOCKER_IMAGE_GROUP: "ci",
 }
@@ -42,7 +42,7 @@ func TestContainerPullLocalstack(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Localstack.AWS_ECR_URI + "/" + Localstack.DOCKER_IMAGE_GROUP + "/" + Localstack.DOCKER_IMAGE + ":" + Localstack.DOCKER_TAG,
+			Image: Localstack.AWS_ECR_URI + "/" + Localstack.DOCKER_IMAGE_GROUP + "/" + Localstack.DOCKER_IMAGE + ":" + Localstack.DOCKER_IMAGE_TAG,
 		},
 		Started: false,
 	})
@@ -54,7 +54,7 @@ func TestContainerExecLocalstack(t *testing.T) {
 	ctx := context.Background()
 	container, e := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: testcontainers.ContainerRequest{
-			Image: Localstack.AWS_ECR_URI + "/" + Localstack.DOCKER_IMAGE_GROUP + "/" + Localstack.DOCKER_IMAGE + ":" + Localstack.DOCKER_TAG,
+			Image: Localstack.AWS_ECR_URI + "/" + Localstack.DOCKER_IMAGE_GROUP + "/" + Localstack.DOCKER_IMAGE + ":" + Localstack.DOCKER_IMAGE_TAG,
 			Cmd:   []string{"awslocal", "--version"},
 		},
 		Started: true,
