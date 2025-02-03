@@ -42,6 +42,7 @@ updates:
     directories:
       - "/alpine-build/**"
       - "/ansible/**"
+      - "/debian-build/**"
       - "/golang/**"
       - "/kubectl/**"
       - "/localstack/**"
