@@ -3,6 +3,6 @@
 FROM public.ecr.aws/w2u0w5i6/base/alpine:3.21 AS base
 
 RUN apk add --no-cache \
-    sudo bash git curl ca-certificates tar xz make gcc g++ musl-dev autoconf automake \
+    sudo bash git curl ca-certificates tar xz make musl-dev gcompat gcc g++ pkg-config autoconf automake \
     && rm -rf /var/cache/apk/* \
     && ln -s /var/cache/apk /etc/apk/cache
