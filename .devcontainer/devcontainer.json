@@ -2,7 +2,7 @@
   "image": "public.ecr.aws/w2u0w5i6/devcontainer/ubuntu-base:jammy",
   "name": "docker-ci-images",
   "features": {
-      "ghcr.io/antyung/devcontainers/common-utils:1": {},
+      "ghcr.io/antyung/devcontainers/common-utils:2": {},
       "ghcr.io/antyung/devcontainers/docker-in-docker:1": {},
       "ghcr.io/antyung/devcontainers/golang:1": {}
   },
